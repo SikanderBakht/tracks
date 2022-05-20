@@ -8,6 +8,10 @@ import SignupScreen from './src/screens/SignupScreen'
 import TrackCreateScreen from './src/screens/TrackCreateScreen'
 import TrackDetailScreen from './src/screens/TrackDetailScreen'
 import TrackListScreen from './src/screens/TrackListScreen'
+import { Provider } from 'react-redux'
+import { store } from './src/redux/store'
+import { NavigationContainer } from '@react-navigation/native';
+
 
 const switchNavigator = createSwitchNavigator({
   loginFlow: createStackNavigator({
@@ -24,4 +28,13 @@ const switchNavigator = createSwitchNavigator({
   })
 })
 
-export default createAppContainer(switchNavigator)
+const AppContainer = createAppContainer(switchNavigator)
+
+export default function App() {
+  return <Provider store={store}>
+    <NavigationContainer>
+      <AppContainer />
+    </NavigationContainer>
+  </Provider>
+}
+
